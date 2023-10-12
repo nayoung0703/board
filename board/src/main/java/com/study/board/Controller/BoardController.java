@@ -25,7 +25,7 @@ public class BoardController {
     public String boardWritePro(Board board){
         boardService.write(board);
         //System.out.println(board.getTitle());
-        return "";
+        return "redirect:/board/list";
     }
 
     @GetMapping("/board/list")
@@ -56,10 +56,10 @@ public class BoardController {
     public String boardupdate(@PathVariable("id") Integer id, Board board){
 
         Board boardTemp = boardService.boardview(id);
-        System.out.println(boardTemp);
         boardTemp.setTitle(board.getTitle());
         boardTemp.setContent(board.getContent());
 
+        boardService.write(board);
         return "redirect:/board/list";
     }
 
